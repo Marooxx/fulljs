@@ -21,20 +21,18 @@ module.exports.list = (req, res, next) => {
  * Ajout un produit en BDD
  */
 module.exports.add = (req, res, next) => {
+
+    const productReceived = req.body;
+    
     // Ajout d'un produit en BDD
     Product.create(
-        {
-            name: 'Transat',
-            introduction: 'Idéal pour se reposer après une semaine de Full-JavaScript',
-            price: 5.99,
-            createdAt: new Date(),
-            publisher: 'Billy'
-        },
-        (err, product) => {
+        productReceived,
+        (err, productBDD) => {
             if(err) { next(err); }
             else {
-                res.json(product);
+                res.json(productBDD);
             }
         }
     );
+    
 };
