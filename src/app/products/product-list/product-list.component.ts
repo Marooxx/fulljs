@@ -10,7 +10,8 @@ import { Product } from '../../model/product';
 export class ProductListComponent implements OnInit {
 
   // Notre tableau de produits
-  products: Product[];
+  private products: Product[];
+  private productSelected: Product;
 
   constructor(private productService: ProductService) { }
 
