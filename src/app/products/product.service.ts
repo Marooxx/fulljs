@@ -24,8 +24,8 @@ export class ProductService {
   /**
    * Récupération des produits via l'API REST de Node
    */
-  public getProducts() {
-    return this.http.get(this.apiURL).pipe(
+  public getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiURL).pipe(
       tap(() => console.log('Réception des produits'))
     );
   }
@@ -37,6 +37,16 @@ export class ProductService {
   public addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiURL, product, this.httpOptions).pipe(
       tap(() => console.log(`Retour de l'API après l'ajout du produit`))
+    );
+  }
+
+  /**
+   * Récupération d'un produit (grâce à l'id) via l'API REST de Node
+   * @param id L'id du produit reçu depuis l'URL
+   */
+  public showProduct(id: String): Observable<Product> {
+    return this.http.get<Product>(this.apiURL + '/' + id).pipe(
+      tap((product) => console.log(`Réception du produit portant l'id ${id}`))
     );
   }
 
