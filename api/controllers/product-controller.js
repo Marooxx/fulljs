@@ -2,6 +2,7 @@
 const ProductFile = require(__basedir + '/model/product.js');
 const Product = ProductFile.Product;
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 /**
  * Récupère la liste des produits
@@ -23,6 +24,7 @@ module.exports.list = (req, res, next) => {
  */
 module.exports.add = (req, res, next) => {
 
+    // Récupération du produit
     const productReceived = req.body;
     
     // Ajout d'un produit en BDD
@@ -44,7 +46,7 @@ module.exports.add = (req, res, next) => {
 module.exports.show = (req, res, next) => {
     // Récupération de l'id
     const id = req.params.id;
-    if(mongoose.Types.ObjectId.isValid(id)) {
+    if(ObjectId.isValid(id)) {
         // Récupération du produit
         Product.findOne(
             { '_id' : id },
@@ -58,4 +60,37 @@ module.exports.show = (req, res, next) => {
     } else {
         res.json(null);
     }   
+};
+
+/**
+ * Modification d'un produit
+ */
+module.exports.update = (req, res, next) => {
+    
+    // Récupération du produit
+    const productToUpdate = req.body;
+
+    // Si l'id du produit envoyé est valide : on modifie
+    if(productToUpdate._id && ObjectId.isValid(productToUpdate._id)) {
+        // Modification du produit
+        Product.update(
+            // Les conditions que doivent respectés les enregistrements pour être modifiés
+            {
+                '_id' : productToUpdate._id
+            },
+
+            // Les modifications à effectuer
+            productToUpdate,
+
+            // Fonction de rappel (callback) à éxecuter lorsque les modifications ont été faites
+            (err, nbLines) => {
+                if(err) { next(err); }
+                else {
+                    res.json({ result: true });
+                } 
+            }
+        );
+    } else {
+        res.json({ result: false });
+    }    
 };

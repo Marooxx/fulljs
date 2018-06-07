@@ -12,8 +12,16 @@ export class ProductAddComponent {
   // Produit que l'on va envoyer au serveur
   private product: Product;
 
+  // Variables d'affichage
+  private title: String;
+  private submitValue: String;
+
   constructor(private productService: ProductService) {
     this.product = new Product();
+
+    // Initialisation des variables d'affichage
+    this.title = `Ajout d'un produit`;
+    this.submitValue = 'Créer';
   }
 
   /**

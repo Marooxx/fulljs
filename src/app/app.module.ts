@@ -14,6 +14,7 @@ import { ProductAddComponent } from './products/product-add/product-add.componen
 import { ProductViewShowComponent } from './products/product-view-show/product-view-show.component';
 import { Error404Component } from './errors/error404/error404.component';
 import { ProductShowComponent } from './products/product-show/product-show.component';
+import { ProductUpdateComponent } from './products/product-update/product-update.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ProductShowComponent } from './products/product-show/product-show.compo
     ProductViewShowComponent,
     Error404Component,
     ProductShowComponent,
+    ProductUpdateComponent,
   ],
   imports: [
     BrowserModule,

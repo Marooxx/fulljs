@@ -11,6 +11,8 @@ router.route('/')
     .get(productController.list)
     // Ajout d'un produit
     .post(productController.add)
+    // Modification d'un produit
+    .put(productController.update)
 ;
 
 // Détail d'un produit

@@ -8,6 +8,7 @@ import { Product } from '../model/product';
 // RxJS : Les observables
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,16 @@ export class ProductService {
   public showProduct(id: String): Observable<Product> {
     return this.http.get<Product>(this.apiURL + '/' + id).pipe(
       tap((product) => console.log(`Réception du produit portant l'id ${id}`))
+    );
+  }
+
+  /**
+   * Mofication d'un produit via l'API REST de Node
+   * @param product Produit à modifier en BDD
+   */
+  public update(product: Product): Observable<{result: Boolean}> {
+    return this.http.put<{result: Boolean}>(this.apiURL, product, this.httpOptions).pipe(
+      tap((data) => console.log('Retour de modification : ' + data.result))
     );
   }
 
