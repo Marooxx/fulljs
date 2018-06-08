@@ -9,6 +9,7 @@ import { UserRoutingModule } from './user-routing.module';
 
 // Components persos
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     HttpClientModule,
     UserRoutingModule
   ],
-  declarations: [UserRegisterComponent]
+  declarations: [UserRegisterComponent, UserLoginComponent]
 })
 export class UserModule { }

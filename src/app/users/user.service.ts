@@ -27,4 +27,11 @@ export class UserService {
       tap((data) => console.log('Résultat de l\'inscription : ' + data.result))
     );
   }
+
+  public login(user: User): Observable<{result: Boolean}> {
+    return this.http.post<{result: Boolean}>(this.apiURL + '/login', user, this.httpOptions).pipe(
+      tap((data) => console.log('Résultat de l\'authentification : ' + data.result))
+    );
+  }
+
 }
