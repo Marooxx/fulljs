@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../model/product';
+import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,9 +14,27 @@ export class ProductShowComponent implements OnInit {
   // Le produit sera envoyé depuis le parent
   @Input() private product: Product;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+ /**
+   * Suppression d'un produit via l'API avec son URL
+   */
+  private remove(): void {
+    this.productService.delete(this.product._id).subscribe(
+      (data) => {
+        if (data.result) {
+          this.router.navigate(['/produits']);
+        } else {
+          console.log(`L'id envoyé est incorrecte`);
+        }
+      }
+    );
   }
 
 }

@@ -16,6 +16,11 @@ router.route('/')
 ;
 
 // Détail d'un produit
-router.get('/:id', productController.show);
+router.route('/:id')
+    // Détail d'un produit
+    .get(productController.show)
+    // Suppression d'un produit
+    .delete(productController.delete)
+;
 
 module.exports = router;

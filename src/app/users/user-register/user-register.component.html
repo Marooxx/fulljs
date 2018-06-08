@@ -1,0 +1,35 @@
+<main class="container">
+  <h1>Inscripfsdfdstion</h1>
+
+  <form (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input [(ngModel)]="user.email" required type="email" class="form-control" id="email" name="email" placeholder="Adresse email">
+    </div>
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur*</label>
+      <input [(ngModel)]="user.username" required type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur">
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe*</label>
+      <input [(ngModel)]="user.plainPassword" required type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+    </div>
+    <div class="form-group">
+      <label for="passwordRepeat">Ressaisissez votre mot de passe*</label>
+      <input [(ngModel)]="user.passwordRepeat" required type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" placeholder="Mot de passe">
+    </div>
+    
+    <div class="form-group">
+      <label for="firstname">Prénom</label>
+      <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Nom</label>
+      <input [(ngModel)]="user.lastName" type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom">
+    </div>
+
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
+  </form>
+
+  <pre>{{ user | json }}</pre>
+</main>

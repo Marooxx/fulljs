@@ -94,3 +94,31 @@ module.exports.update = (req, res, next) => {
         res.json({ result: false });
     }    
 };
+
+/**
+ * Suppression d'un produit
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+module.exports.delete = (req, res, next) => {
+    
+    // Récupération de l'id
+    const idToDelete = req.params.id;
+
+    if(ObjectId.isValid(idToDelete)) {
+        // Suppression du produit
+        Product.deleteOne(
+            { '_id' : idToDelete },
+            (err) => {
+                if(err) { next(err); }
+                else {
+                    res.json({ result: true});
+                }
+            }
+        );
+
+    } else {
+        res.json({ result: false});
+    }
+};

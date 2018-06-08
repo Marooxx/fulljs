@@ -14,6 +14,7 @@ let cors = require('cors');
 
 // Imports des routeurs
 const productRouter = require('./routes/product-routeur');
+const userRouter = require('./routes/user-routeur');
 
 // Création de l'application
 let app = express();
@@ -39,6 +40,8 @@ database.once('open', () => console.log('[mongoose]  Connexion à MongoDB : réu
 
 // Routage
 app.use('/api/products', productRouter);
+app.use('/api/user', userRouter);
+
 
 // Gestion erreur 404 : dans le cas où aucune route n'est trouvée
 app.use(function(req, res, next) {
